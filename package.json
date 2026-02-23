@@ -1,0 +1,43 @@
+{
+  "name": "event-handler",
+  "version": "0.1.0",
+  "description": "TypeScript CloudEvent Handler",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "prebuild": "npm install",
+    "build": "npx -p typescript tsc",
+    "pretest": "npm run lint && npm run build",
+    "test:unit": "ts-node node_modules/tape/bin/tape test/unit.ts",
+    "test:integration": "ts-node node_modules/tape/bin/tape test/integration.ts",
+    "test": "npm run test:unit && npm run test:integration",
+    "start": "FUNC_LOG_LEVEL=info node --no-warnings ./node_modules/.bin/faas-js-runtime ./dist/index.js",
+    "lint": "eslint \"src/**/*.{js,ts,tsx}\" \"test/**/*.{js,ts,tsx}\" --quiet --fix",
+    "debug": "nodemon --inspect ./node_modules/faas-js-runtime/bin/cli.js ./dist/index.js"
+  },
+  "devDependencies": {
+    "@types/tape": "^5.8.1",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.29.0",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3",
+    "supertest": "^7.1.1",
+    "tape": "^5.9.0",
+    "ts-node": "^10.9.2",
+    "tsd": "^0.32.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/node": "~22.15.32",
+    "faas-js-runtime": "~3.0.2"
+  }
+}
